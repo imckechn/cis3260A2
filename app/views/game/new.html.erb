@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="vert-horz" > 
+        <div class="center-div-col basic-bg ">
+            <div>
+                <H1> Welcome to play game <H1>
+            </div>
+
+            <% if Current.user %>
+                <div>
+                    <div>
+                        Name = <%= @player.name %>
+                    </div>
+                    Points = <%= Current.user.points %>
+
+                    <div>
+                        Number of Coins in your bag <%= @coinsInBag %>
+                    </div>
+                    <div>
+                        Number of Coins in your cup <%= @coinsInCup%>
+                    </div>
+                </div>
+                
+                <div>
+                    <div>
+                        Number of Dice in your bag <%= @dieInBag %>
+                    </div>
+                    <div>
+                        Number of Dice in your cup <%= @dieInCup %>
+                    </div>
+                </div>
+
+                <div>
+                    <%= form_with url: '/moveToCup' do |form| %>
+
+                        <div>
+                            What items would you like to move to the cup (leave blank for all)
+                        </div>
+                        <div class="mb-3">
+                            <%= form.label :description%>
+                            <%= form.text_field :description, placeholder: "colour: white" %>
+                        </div>
+
+                        <div class="mb-3">
+                            <%= form.submit "Move to cup"%>
+                        </div>
+                    <% end %>
+                </div>
+
+                <H3> Throw items in cup </H3>
+                <%= button_to "Throw", game_path, method: :throwCup %>
+
+                <% if defined?(@throwResults) %>
+                    <div>
+                        <%= @throwResults.each do |result|%>
+                            <div>
+                                <%= result%>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+
+                <% if defined?(@dup) %>
+                    <div>
+                        <H5> Success, you have <%= dup.len %> Snake eyes! <H5>
+                        <%= @dup.each do |result|%>
+                            <div>
+                                <%= result%>
+                            </div>
+                        <% end %>
+                        <H5>All have repeats!</H5>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

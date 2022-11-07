@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="vert-horz" > 
+        <div class="center-div-col basic-bg ">
+            <h1> Sign up </h1 class="mb-3">
+
+            <%= form_with model: @user, url: '/sign_up' do |form| %>
+                <% if @user.errors.any? %>
+                    <div class="alert alert-danger">
+                        <% @user.errors.full_messages.each do |message|%>
+                            <div>
+                                <%= message %>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+
+                <div class="mb-3">
+                    <%= form.label :email%>
+                    <%= form.text_field :email, class: "form_control", placeholder: "Johnny@appleseed.ca" %>
+                </div>
+                <div class="mb-3">
+                    <%= form.label :name%>
+                    <%= form.text_field :name, class: "form_control", placeholder: "Johnny Appleseed" %>
+                </div>
+                <div class="mb-3">
+                    <%= form.label :password%>
+                    <%= form.password_field :password, class: "form_control", placeholder: "Password"%>
+                </div>
+                <div class="mb-3">
+                    <%= form.label :password_confirmation%>
+                    <%= form.password_field :password_confirmation, class: "form_control", placeholder: "Password" %>
+                </div>
+
+                <div class="mb-3">
+                    <%= form.submit "Sign up", class: "btn btn-primary"%>
+                </div>
+            <% end %>
+
+            <div>Or, sign in</div>
+            <%= button_to "Sign In", sign_in_path, method: :post %>
+        </div>
+    </div>
+</div>

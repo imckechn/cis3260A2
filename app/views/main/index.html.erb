@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="vert-horz" > 
+        <div class="center-div-col basic-bg ">
+            <div class="d-flex-aligh-items-center justify-content-center" style="Display: block">
+                <h1>Welcome to user page</h1>
+            </div>
+
+
+            <div style="Display: block">
+                <div style="Display: block">
+                    <% if Current.user %>
+                        <div>
+                            Logged in as: <%= Current.user.email %>
+                        </div>
+
+                        <div>
+                        Name = <%= @player.name %>
+                        Points = <%= Current.user.points %>
+                        <div>
+                            Number of Coins in your bag <%= @player.count_coins_in_bag %>
+                        </div>
+                        <div>
+                            Number of Dice in your bag <%= @player.count_dice_in_bag %>
+                        </div>
+                        
+                    <% end %>
+                </div>
+
+                <%= button_to "Delete Account", logout_path, method: :delete %>
+                <%= button_to "Play Game", game_path, method: :new %>
+                <%= button_to "Logout", logout_path, method: :logout %>
+            </div>
+        </div>
+    </div>
+</div>

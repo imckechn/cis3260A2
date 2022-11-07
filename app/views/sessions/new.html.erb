@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="vert-horz" > 
+        <div class="center-div-col basic-bg ">
+            <h1 class="text-center">Sign In</h1>
+
+            <% if defined?(@error) %>
+                <div>
+                    <%= @error%>
+                </div>
+            <% end %>
+
+            <%= form_with url: sign_in_path do |form| %>
+                <div class="mb-3">
+                    <%= form.label :email%>
+                    <%= form.text_field :email, class: "form_control", placeholder: "ian@uoguelph.ca" %>
+                </div>
+                <div class="mb-3">
+                    <%= form.label :password%>
+                    <%= form.password_field :password, class: "form_control", placeholder: "Password"%>
+                </div>
+
+                <div class="mb-3">
+                    <%= form.submit "Sign In", class: "btn btn-primary"%>
+                </div>
+            <% end %>
+
+            <div>Or, sign up</div>
+            <%= button_to "Sign Up", sign_up_path, method: :get %>
+        </div>
+    </div>
+</div>
